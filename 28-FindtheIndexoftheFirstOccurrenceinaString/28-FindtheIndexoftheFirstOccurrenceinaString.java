@@ -1,22 +1,25 @@
-// Last updated: 8/6/2026, 9:15:18 AM
+// Last updated: 8/6/2026, 9:15:59 AM
 1class Solution {
-2    public boolean isBalanced(TreeNode root) {
-3        return dfsHeight(root) != -1;
-4    }
-5
-6    private int dfsHeight(TreeNode node) {
-7        if (node == null) return 0;
-8
-9        int leftHeight = dfsHeight(node.left);
-10        if (leftHeight == -1) return -1;
-11
-12        int rightHeight = dfsHeight(node.right);
-13        if (rightHeight == -1) return -1;
-14
-15        if (Math.abs(leftHeight - rightHeight) > 1) {
-16            return -1;
-17        }
-18
-19        return 1 + Math.max(leftHeight, rightHeight);
-20    }
-21}
+2    public List<List<Integer>> generate(int numRows) {
+3        if (numRows == 0) return new ArrayList<>();
+4        if (numRows == 1) {
+5            List<List<Integer>> result = new ArrayList<>();
+6            result.add(Arrays.asList(1));
+7            return result;
+8        }
+9        
+10        List<List<Integer>> prevRows = generate(numRows - 1);
+11        List<Integer> newRow = new ArrayList<>();
+12        
+13        for (int i = 0; i < numRows; i++) {
+14            newRow.add(1);
+15        }
+16        
+17        for (int i = 1; i < numRows - 1; i++) {
+18            newRow.set(i, prevRows.get(numRows - 2).get(i - 1) + prevRows.get(numRows - 2).get(i));
+19        }
+20        
+21        prevRows.add(newRow);
+22        return prevRows;
+23    }
+24}
