@@ -1,19 +1,14 @@
-# Last updated: 8/6/2026, 9:12:37 AM
+# Last updated: 8/6/2026, 9:13:48 AM
 1class Solution:
-2  def addBinary(self, a: str, b: str) -> str:
-3    s = []
-4    carry = 0
-5    i = len(a) - 1
-6    j = len(b) - 1
-7
-8    while i >= 0 or j >= 0 or carry:
-9      if i >= 0:
-10        carry += int(a[i])
-11        i -= 1
-12      if j >= 0:
-13        carry += int(b[j])
-14        j -= 1
-15      s.append(str(carry % 2))
-16      carry //= 2
-17
-18    return ''.join(reversed(s))
+2    def isSameTree(self, p, q):
+3        # If both nodes are None, they are identical
+4        if p is None and q is None:
+5            return True
+6        # If only one of the nodes is None, they are not identical
+7        if p is None or q is None:
+8            return False
+9        # Check if values are equal and recursively check left and right subtrees
+10        if p.val == q.val:
+11            return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+12        # Values are not equal, they are not identical
+13        return False
