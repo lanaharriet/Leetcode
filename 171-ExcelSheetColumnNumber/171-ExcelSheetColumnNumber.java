@@ -1,14 +1,16 @@
-// Last updated: 8/6/2026, 9:24:34 AM
+// Last updated: 8/6/2026, 9:25:50 AM
 1class Solution {
-2    public int titleToNumber(String columnTitle) {
-3        long ans = 0;
-4
-5        // Same idea as decimal parsing, but base is 26.
-6        for (int i = 0; i < columnTitle.length(); i++) {
-7            char ch = columnTitle.charAt(i);
-8            ans = ans * 26 + (ch - 'A' + 1);
-9        }
-10
-11        return (int) ans;
-12    }
-13}
+2    public int reverseBits(int n) { return rev(n, 32); }
+3
+4    private int rev(int v, int len) {
+5        if (len == 1) return v & 1;
+6
+7        int half = len >> 1;
+8        int mask = (1 << half) - 1;
+9        int lo = v & mask;
+10        int hi = v >>> half;
+11
+12        return (rev(lo, half) << half) | rev(hi, half);
+13    }
+14}
+15
