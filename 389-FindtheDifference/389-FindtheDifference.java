@@ -1,19 +1,9 @@
-// Last updated: 8/6/2026, 9:38:55 AM
+// Last updated: 8/6/2026, 9:39:45 AM
 1class Solution {
 2    public char findTheDifference(String s, String t) {
-3        Map<Character, Integer> count = new HashMap<>();
-4        
-5        for (char c : t.toCharArray()) {
-6            count.put(c, count.getOrDefault(c, 0) + 1);
-7        }
-8        
-9        for (char c : s.toCharArray()) {
-10            count.put(c, count.get(c) - 1);
-11            if (count.get(c) == 0) {
-12                count.remove(c);
-13            }
-14        }
-15        
-16        return (char) count.keySet().toArray()[0];        
-17    }
-18}
+3        char c = 0;
+4        for(char cs : s.toCharArray()) c ^= cs;
+5        for(char ct : t.toCharArray()) c ^= ct;
+6        return c;
+7    }
+8}
