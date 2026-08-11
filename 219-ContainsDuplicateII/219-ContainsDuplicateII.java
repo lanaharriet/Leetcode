@@ -1,29 +1,23 @@
-// Last updated: 8/11/2026, 9:22:38 AM
-1public class Solution {
-2    public int longestPalindrome(String s) {
-3        // Initialize a set to keep track of characters with odd frequencies
-4        HashSet<Character> charSet = new HashSet<>();
-5        // Initialize the length of the longest palindrome
-6        int length = 0;
-7        
-8        // Iterate over each character in the string
-9        for (char c : s.toCharArray()) {
-10            // If the character is already in the set, remove it and increase the length by 2
-11            if (charSet.contains(c)) {
-12                charSet.remove(c);
-13                length += 2;
-14            } else {
-15                // If the character is not in the set, add it to the set
-16                charSet.add(c);
-17            }
-18        }
-19        
-20        // If there are any characters left in the set, add 1 to the length for the middle character
-21        if (!charSet.isEmpty()) {
-22            length += 1;
-23        }
-24        
-25        // Return the total length of the longest palindrome
-26        return length;
-27    }
-28}
+// Last updated: 8/11/2026, 9:24:17 AM
+1class Solution {
+2    public String addStrings(String num1, String num2) {
+3        StringBuilder sb=new StringBuilder();
+4        int i=num1.length()-1;
+5        int j=num2.length()-1;
+6        int carry=0;
+7        while(i>=0||j>=0||carry!=0){
+8            int sum=carry;
+9            if(i>=0){
+10                sum+=num1.charAt(i)-'0';
+11                i--;
+12            }
+13            if(j>=0){
+14                sum+=num2.charAt(j)-'0';
+15                j--;
+16            }
+17            sb.append(sum%10);
+18            carry=sum/10;
+19        }
+20       return sb.reverse().toString();
+21    } 
+22}
