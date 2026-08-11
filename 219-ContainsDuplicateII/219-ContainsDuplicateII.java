@@ -1,23 +1,15 @@
-// Last updated: 8/11/2026, 9:00:36 AM
-1import java.util.HashSet;
-2import java.util.Set;
-3
-4class Solution {
-5    public boolean containsNearbyDuplicate(int[] nums, int k) {
-6        Set<Integer> set = new HashSet<>();
-7        
-8        for (int i = 0; i < nums.length; i++) {
-9            // Remove the element that is now outside the window
-10            if (i > k) {
-11                set.remove(nums[i - k - 1]);
-12            }
-13            
-14            // Try to add the current element. If it fails, a duplicate exists.
-15            if (!set.add(nums[i])) {
-16                return true;
-17            }
-18        }
-19        
-20        return false;
-21    }
-22}
+// Last updated: 8/11/2026, 9:01:37 AM
+1class Solution {
+2    public boolean isUgly(int n) {
+3        if (n <= 0) {
+4            return false;
+5        }
+6        int[] factors = {2, 3, 5};
+7        for (int factor : factors) {
+8            while (n % factor == 0) {
+9                n /= factor;
+10            }
+11        }
+12        return n == 1;
+13    }
+14}
